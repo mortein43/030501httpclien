@@ -10,14 +10,12 @@ class Program
         HtmlWeb web = new HtmlWeb();
         HtmlDocument document = web.Load(url);
 
-        // Знайдемо всі блоки, які містять курси валют
         var currencyBlocks = document.DocumentNode.SelectNodes("//li[@class='currencies__block']");
 
         if (currencyBlocks != null)
         {
             foreach (var block in currencyBlocks)
             {
-                // Отримаємо назву валюти та її курс
                 var currencyName = block.SelectSingleNode(".//a")?.InnerText;
                 var buyRate = block.SelectSingleNode(".//div[@class='currencies__block-buy']/div[@class='currencies__block-num']")?.InnerText;
                 var saleRate = block.SelectSingleNode(".//div[@class='currencies__block-sale']/div[@class='currencies__block-num']")?.InnerText;
